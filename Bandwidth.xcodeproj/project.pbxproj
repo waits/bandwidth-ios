@@ -121,6 +121,7 @@
 			buildPhases = (
 				FCBD53911B8162B2005667DF /* Sources */,
 				FCBD53921B8162B2005667DF /* Frameworks */,
+				FCBD53BA1B8163E2005667DF /* Increment Build Number */,
 				FCBD53931B8162B2005667DF /* Resources */,
 			);
 			buildRules = (
@@ -206,6 +207,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FCBD53BA1B8163E2005667DF /* Increment Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Increment Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PROJECT_DIR}/Tools/bump_build_number.sh\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FCBD53911B8162B2005667DF /* Sources */ = {
@@ -411,6 +429,7 @@
 				FCBD53B61B8162B2005667DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FCBD53B71B8162B2005667DF /* Build configuration list for PBXNativeTarget "BandwidthTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +438,7 @@
 				FCBD53B91B8162B2005667DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
