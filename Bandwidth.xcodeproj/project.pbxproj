@@ -1,0 +1,426 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FCBD539B1B8162B2005667DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBD539A1B8162B2005667DF /* AppDelegate.swift */; };
+		FCBD539D1B8162B2005667DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBD539C1B8162B2005667DF /* ViewController.swift */; };
+		FCBD53A01B8162B2005667DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCBD539E1B8162B2005667DF /* Main.storyboard */; };
+		FCBD53A21B8162B2005667DF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCBD53A11B8162B2005667DF /* Images.xcassets */; };
+		FCBD53A51B8162B2005667DF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCBD53A31B8162B2005667DF /* LaunchScreen.xib */; };
+		FCBD53B11B8162B2005667DF /* BandwidthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBD53B01B8162B2005667DF /* BandwidthTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FCBD53AB1B8162B2005667DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FCBD538D1B8162B2005667DF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FCBD53941B8162B2005667DF;
+			remoteInfo = Bandwidth;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FCBD53951B8162B2005667DF /* Bandwidth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bandwidth.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCBD53991B8162B2005667DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FCBD539A1B8162B2005667DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FCBD539C1B8162B2005667DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FCBD539F1B8162B2005667DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FCBD53A11B8162B2005667DF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		FCBD53A41B8162B2005667DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		FCBD53AA1B8162B2005667DF /* BandwidthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BandwidthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCBD53AF1B8162B2005667DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FCBD53B01B8162B2005667DF /* BandwidthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandwidthTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FCBD53921B8162B2005667DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCBD53A71B8162B2005667DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FCBD538C1B8162B2005667DF = {
+			isa = PBXGroup;
+			children = (
+				FCBD53971B8162B2005667DF /* Bandwidth */,
+				FCBD53AD1B8162B2005667DF /* BandwidthTests */,
+				FCBD53961B8162B2005667DF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FCBD53961B8162B2005667DF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FCBD53951B8162B2005667DF /* Bandwidth.app */,
+				FCBD53AA1B8162B2005667DF /* BandwidthTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FCBD53971B8162B2005667DF /* Bandwidth */ = {
+			isa = PBXGroup;
+			children = (
+				FCBD539A1B8162B2005667DF /* AppDelegate.swift */,
+				FCBD539C1B8162B2005667DF /* ViewController.swift */,
+				FCBD539E1B8162B2005667DF /* Main.storyboard */,
+				FCBD53A11B8162B2005667DF /* Images.xcassets */,
+				FCBD53A31B8162B2005667DF /* LaunchScreen.xib */,
+				FCBD53981B8162B2005667DF /* Supporting Files */,
+			);
+			path = Bandwidth;
+			sourceTree = "<group>";
+		};
+		FCBD53981B8162B2005667DF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FCBD53991B8162B2005667DF /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FCBD53AD1B8162B2005667DF /* BandwidthTests */ = {
+			isa = PBXGroup;
+			children = (
+				FCBD53B01B8162B2005667DF /* BandwidthTests.swift */,
+				FCBD53AE1B8162B2005667DF /* Supporting Files */,
+			);
+			path = BandwidthTests;
+			sourceTree = "<group>";
+		};
+		FCBD53AE1B8162B2005667DF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FCBD53AF1B8162B2005667DF /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FCBD53941B8162B2005667DF /* Bandwidth */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FCBD53B41B8162B2005667DF /* Build configuration list for PBXNativeTarget "Bandwidth" */;
+			buildPhases = (
+				FCBD53911B8162B2005667DF /* Sources */,
+				FCBD53921B8162B2005667DF /* Frameworks */,
+				FCBD53931B8162B2005667DF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Bandwidth;
+			productName = Bandwidth;
+			productReference = FCBD53951B8162B2005667DF /* Bandwidth.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FCBD53A91B8162B2005667DF /* BandwidthTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FCBD53B71B8162B2005667DF /* Build configuration list for PBXNativeTarget "BandwidthTests" */;
+			buildPhases = (
+				FCBD53A61B8162B2005667DF /* Sources */,
+				FCBD53A71B8162B2005667DF /* Frameworks */,
+				FCBD53A81B8162B2005667DF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FCBD53AC1B8162B2005667DF /* PBXTargetDependency */,
+			);
+			name = BandwidthTests;
+			productName = BandwidthTests;
+			productReference = FCBD53AA1B8162B2005667DF /* BandwidthTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FCBD538D1B8162B2005667DF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "Dylan Waits";
+				TargetAttributes = {
+					FCBD53941B8162B2005667DF = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					FCBD53A91B8162B2005667DF = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = FCBD53941B8162B2005667DF;
+					};
+				};
+			};
+			buildConfigurationList = FCBD53901B8162B2005667DF /* Build configuration list for PBXProject "Bandwidth" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FCBD538C1B8162B2005667DF;
+			productRefGroup = FCBD53961B8162B2005667DF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FCBD53941B8162B2005667DF /* Bandwidth */,
+				FCBD53A91B8162B2005667DF /* BandwidthTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FCBD53931B8162B2005667DF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FCBD53A01B8162B2005667DF /* Main.storyboard in Resources */,
+				FCBD53A51B8162B2005667DF /* LaunchScreen.xib in Resources */,
+				FCBD53A21B8162B2005667DF /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCBD53A81B8162B2005667DF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FCBD53911B8162B2005667DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FCBD539D1B8162B2005667DF /* ViewController.swift in Sources */,
+				FCBD539B1B8162B2005667DF /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCBD53A61B8162B2005667DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FCBD53B11B8162B2005667DF /* BandwidthTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FCBD53AC1B8162B2005667DF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FCBD53941B8162B2005667DF /* Bandwidth */;
+			targetProxy = FCBD53AB1B8162B2005667DF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FCBD539E1B8162B2005667DF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FCBD539F1B8162B2005667DF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FCBD53A31B8162B2005667DF /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FCBD53A41B8162B2005667DF /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FCBD53B21B8162B2005667DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FCBD53B31B8162B2005667DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FCBD53B51B8162B2005667DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Bandwidth/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FCBD53B61B8162B2005667DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Bandwidth/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		FCBD53B81B8162B2005667DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = BandwidthTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bandwidth.app/Bandwidth";
+			};
+			name = Debug;
+		};
+		FCBD53B91B8162B2005667DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = BandwidthTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bandwidth.app/Bandwidth";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FCBD53901B8162B2005667DF /* Build configuration list for PBXProject "Bandwidth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FCBD53B21B8162B2005667DF /* Debug */,
+				FCBD53B31B8162B2005667DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FCBD53B41B8162B2005667DF /* Build configuration list for PBXNativeTarget "Bandwidth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FCBD53B51B8162B2005667DF /* Debug */,
+				FCBD53B61B8162B2005667DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FCBD53B71B8162B2005667DF /* Build configuration list for PBXNativeTarget "BandwidthTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FCBD53B81B8162B2005667DF /* Debug */,
+				FCBD53B91B8162B2005667DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FCBD538D1B8162B2005667DF /* Project object */;
+}
