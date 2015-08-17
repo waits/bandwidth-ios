@@ -9,6 +9,12 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var startButton: UIButton!
+    
+    @IBAction func startWasPressed(sender: UIButton) {
+        request(1)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,4 +28,3 @@ class ViewController: UIViewController {
 
 
 }
-

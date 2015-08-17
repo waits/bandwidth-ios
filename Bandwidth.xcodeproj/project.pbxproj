@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC2C37D11B8166D7005E499D /* request.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2C37D01B8166D7005E499D /* request.swift */; };
 		FCBD539B1B8162B2005667DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBD539A1B8162B2005667DF /* AppDelegate.swift */; };
 		FCBD539D1B8162B2005667DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBD539C1B8162B2005667DF /* ViewController.swift */; };
 		FCBD53A01B8162B2005667DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCBD539E1B8162B2005667DF /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC2C37D01B8166D7005E499D /* request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = request.swift; sourceTree = "<group>"; };
 		FCBD53951B8162B2005667DF /* Bandwidth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bandwidth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCBD53991B8162B2005667DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCBD539A1B8162B2005667DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				FCBD53A11B8162B2005667DF /* Images.xcassets */,
 				FCBD53A31B8162B2005667DF /* LaunchScreen.xib */,
 				FCBD53981B8162B2005667DF /* Supporting Files */,
+				FC2C37D01B8166D7005E499D /* request.swift */,
 			);
 			path = Bandwidth;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 			files = (
 				FCBD539D1B8162B2005667DF /* ViewController.swift in Sources */,
 				FCBD539B1B8162B2005667DF /* AppDelegate.swift in Sources */,
+				FC2C37D11B8166D7005E499D /* request.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
