@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FC2C37D11B8166D7005E499D /* request.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2C37D01B8166D7005E499D /* request.swift */; };
+		FC2C37D11B8166D7005E499D /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2C37D01B8166D7005E499D /* Network.swift */; };
 		FCBD539B1B8162B2005667DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBD539A1B8162B2005667DF /* AppDelegate.swift */; };
 		FCBD539D1B8162B2005667DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBD539C1B8162B2005667DF /* ViewController.swift */; };
 		FCBD53A01B8162B2005667DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCBD539E1B8162B2005667DF /* Main.storyboard */; };
 		FCBD53A21B8162B2005667DF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCBD53A11B8162B2005667DF /* Images.xcassets */; };
 		FCBD53A51B8162B2005667DF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCBD53A31B8162B2005667DF /* LaunchScreen.xib */; };
 		FCBD53B11B8162B2005667DF /* BandwidthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBD53B01B8162B2005667DF /* BandwidthTests.swift */; };
+		FCEA61BF1B83BBD500553DF4 /* GBPing.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEA61BB1B83BBD500553DF4 /* GBPing.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FCEA61C01B83BBD500553DF4 /* GBPingSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEA61BD1B83BBD500553DF4 /* GBPingSummary.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,7 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		FC2C37D01B8166D7005E499D /* request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = request.swift; sourceTree = "<group>"; };
+		FC2C37D01B8166D7005E499D /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		FCBD53951B8162B2005667DF /* Bandwidth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bandwidth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCBD53991B8162B2005667DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCBD539A1B8162B2005667DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +40,13 @@
 		FCBD53AA1B8162B2005667DF /* BandwidthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BandwidthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCBD53AF1B8162B2005667DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCBD53B01B8162B2005667DF /* BandwidthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandwidthTests.swift; sourceTree = "<group>"; };
+		FCEA61AE1B83BA5200553DF4 /* Bandwidth-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bandwidth-Bridging-Header.h"; sourceTree = "<group>"; };
+		FCEA61B91B83BBD500553DF4 /* GBPing-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GBPing-Prefix.pch"; sourceTree = "<group>"; };
+		FCEA61BA1B83BBD500553DF4 /* GBPing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBPing.h; sourceTree = "<group>"; };
+		FCEA61BB1B83BBD500553DF4 /* GBPing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBPing.m; sourceTree = "<group>"; };
+		FCEA61BC1B83BBD500553DF4 /* GBPingSummary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBPingSummary.h; sourceTree = "<group>"; };
+		FCEA61BD1B83BBD500553DF4 /* GBPingSummary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBPingSummary.m; sourceTree = "<group>"; };
+		FCEA61BE1B83BBD500553DF4 /* ICMPHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICMPHeader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +73,7 @@
 				FCBD53971B8162B2005667DF /* Bandwidth */,
 				FCBD53AD1B8162B2005667DF /* BandwidthTests */,
 				FCBD53961B8162B2005667DF /* Products */,
+				FCEA61C11B83BC5C00553DF4 /* Libraries */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,12 +90,12 @@
 			isa = PBXGroup;
 			children = (
 				FCBD539A1B8162B2005667DF /* AppDelegate.swift */,
+				FC2C37D01B8166D7005E499D /* Network.swift */,
 				FCBD539C1B8162B2005667DF /* ViewController.swift */,
 				FCBD539E1B8162B2005667DF /* Main.storyboard */,
 				FCBD53A11B8162B2005667DF /* Images.xcassets */,
 				FCBD53A31B8162B2005667DF /* LaunchScreen.xib */,
 				FCBD53981B8162B2005667DF /* Supporting Files */,
-				FC2C37D01B8166D7005E499D /* request.swift */,
 			);
 			path = Bandwidth;
 			sourceTree = "<group>";
@@ -93,6 +103,7 @@
 		FCBD53981B8162B2005667DF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FCEA61AE1B83BA5200553DF4 /* Bandwidth-Bridging-Header.h */,
 				FCBD53991B8162B2005667DF /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -113,6 +124,28 @@
 				FCBD53AF1B8162B2005667DF /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FCEA61B81B83BBD500553DF4 /* GBPing */ = {
+			isa = PBXGroup;
+			children = (
+				FCEA61B91B83BBD500553DF4 /* GBPing-Prefix.pch */,
+				FCEA61BA1B83BBD500553DF4 /* GBPing.h */,
+				FCEA61BB1B83BBD500553DF4 /* GBPing.m */,
+				FCEA61BC1B83BBD500553DF4 /* GBPingSummary.h */,
+				FCEA61BD1B83BBD500553DF4 /* GBPingSummary.m */,
+				FCEA61BE1B83BBD500553DF4 /* ICMPHeader.h */,
+			);
+			name = GBPing;
+			path = Bandwidth/GBPing;
+			sourceTree = "<group>";
+		};
+		FCEA61C11B83BC5C00553DF4 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				FCEA61B81B83BBD500553DF4 /* GBPing */,
+			);
+			name = Libraries;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,7 +268,9 @@
 			files = (
 				FCBD539D1B8162B2005667DF /* ViewController.swift in Sources */,
 				FCBD539B1B8162B2005667DF /* AppDelegate.swift in Sources */,
-				FC2C37D11B8166D7005E499D /* request.swift in Sources */,
+				FCEA61BF1B83BBD500553DF4 /* GBPing.m in Sources */,
+				FC2C37D11B8166D7005E499D /* Network.swift in Sources */,
+				FCEA61C01B83BBD500553DF4 /* GBPingSummary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +402,7 @@
 				INFOPLIST_FILE = Bandwidth/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bandwidth/Bandwidth-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -377,6 +413,7 @@
 				INFOPLIST_FILE = Bandwidth/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bandwidth/Bandwidth-Bridging-Header.h";
 			};
 			name = Release;
 		};

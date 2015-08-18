@@ -10,10 +10,16 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let network = Network()
+    
     @IBOutlet weak var startButton: UIButton!
     
     @IBAction func startWasPressed(sender: UIButton) {
-        request(1)
+        network.request(1)
+    }
+    
+    @IBAction func pingWasPressed(sender: UIButton) {
+        network.ping()
     }
 
     override func viewDidLoad() {
