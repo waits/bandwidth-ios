@@ -16,9 +16,12 @@ class ViewController: UIViewController {
     
     @IBAction func startWasPressed(sender: UIButton) {
         self.network.ping() {(latency: Int) in
-            println("Latency: \(latency)ms")
             self.network.download(1) { (bandwidth: Double) in
-                println("Bandwidth: \(bandwidth)Mbps")
+                let message = "Latency: \(latency)ms\nBandwidth: \(bandwidth)Mbps"
+                var alert = UIAlertController(title: "Results", message: message, preferredStyle: .Alert)
+                let closeAction = UIAlertAction(title: "Done", style: .Default, handler: nil)
+                alert.addAction(closeAction)
+                self.presentViewController(alert, animated: true, completion: nil)
             }
         }
         

@@ -13,6 +13,8 @@ class Network : NSObject, GBPingDelegate {
     private var pinger: GBPing?
     private var pingTotal: Double = 0.0
     private var pingHandler: ((Int) -> ())?
+    private var downloadTotal: Int = 0
+    private var downloadTime: UInt64 = 0
     
     func ping(completionHandler: (Int) -> ()) {
         let pinger = GBPing()
@@ -48,10 +50,12 @@ class Network : NSObject, GBPingDelegate {
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError!) in
             let endTime = mach_absolute_time()
             let duration = endTime / NSEC_PER_MSEC - startTime / NSEC_PER_MSEC
-            let bandwidth = Double(size * 1024 * 8) / Double(duration * 1000)
-            let roundedBandwidth = round(bandwidth * 100) / 100
-            println("Downloaded \(file) in \(duration)ms at \(roundedBandwidth)Mbps")
+            self.downloadTotal += size
+            self.downloadTime += duration
+            println("Downloaded \(file) in \(duration)ms")
             if duration > 1000 {
+                let bandwidth = Double(self.downloadTotal * 1024 * 8) / Double(self.downloadTime * 1000)
+                let roundedBandwidth = round(bandwidth * 100) / 100
                 completionHandler(roundedBandwidth)
             }
             else {
