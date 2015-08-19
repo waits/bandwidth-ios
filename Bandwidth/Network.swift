@@ -9,18 +9,20 @@
 import Foundation
 
 class Network : NSObject, GBPingDelegate {
-    let host = "d1djlrw04zbni.cloudfront.net"
-    var pinger: GBPing?
-    var pingTotal: Double = 0.0
+    private static let host = "d1djlrw04zbni.cloudfront.net"
+    private var pinger: GBPing?
+    private var pingTotal: Double = 0.0
+    private var pingHandler: ((Int) -> ())?
     
-    func ping() {
+    func ping(completionHandler: (Int) -> ()) {
         let pinger = GBPing()
-        pinger.host = host
+        pinger.host = Network.host
         pinger.delegate = self
         pinger.timeout = 0.9
         pinger.pingPeriod = 1.0
         pinger.setupWithBlock() {(success: Bool, error: NSError?) in
             if success {
+                self.pingHandler = completionHandler
                 pinger.startPinging()
             }
             else {
@@ -38,7 +40,7 @@ class Network : NSObject, GBPingDelegate {
         else {
             file = "\(size)k"
         }
-        let url = NSURL(string: "http://\(host)/\(file)")!
+        let url = NSURL(string: "http://\(Network.host)/\(file)")!
         var request = NSMutableURLRequest(URL: url)
         var response: AutoreleasingUnsafeMutablePointer<NSURLResponse?> = nil
         var err: NSErrorPointer = nil
@@ -81,7 +83,7 @@ class Network : NSObject, GBPingDelegate {
         if summary.sequenceNumber >= 9 {
             pinger.stop()
             let avg = Int(round(pingTotal / 10))
-            println("Average: \(avg)ms")
+            self.pingHandler?(avg)
         }
     }
     

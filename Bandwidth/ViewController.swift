@@ -15,13 +15,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     
     @IBAction func startWasPressed(sender: UIButton) {
-        network.download(1) { (bandwidth: Double) in
-            println("Bandwidth: \(bandwidth)Mbps")
+        self.network.ping() {(latency: Int) in
+            println("Latency: \(latency)ms")
+            self.network.download(1) { (bandwidth: Double) in
+                println("Bandwidth: \(bandwidth)Mbps")
+            }
         }
-    }
-    
-    @IBAction func pingWasPressed(sender: UIButton) {
-        network.ping()
+        
     }
 
     override func viewDidLoad() {

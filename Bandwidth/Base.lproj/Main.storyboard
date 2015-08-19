@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mf-XC-gxm">
-                                <rect key="frame" x="234" y="243" width="133" height="53"/>
+                                <rect key="frame" x="234" y="273" width="133" height="53"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="34"/>
                                 <state key="normal" title="Start Test">
                                     <color key="titleColor" red="0.38431372549999998" green="0.71372549019999998" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -27,24 +27,12 @@
                                     <action selector="startWasPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e6U-Li-OWR"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVS-I6-vhA">
-                                <rect key="frame" x="269" y="304" width="63" height="53"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="34"/>
-                                <state key="normal" title="Ping">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="pingWasPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ewd-23-lkz"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="2mf-XC-gxm" secondAttribute="centerY" constant="30.5" id="8Si-dS-bq7"/>
-                            <constraint firstAttribute="centerX" secondItem="bVS-I6-vhA" secondAttribute="centerX" constant="-0.5" id="FQT-7a-CSo"/>
-                            <constraint firstAttribute="centerY" secondItem="bVS-I6-vhA" secondAttribute="centerY" constant="-30.5" id="Jqr-Ux-dFM"/>
                             <constraint firstAttribute="centerX" secondItem="2mf-XC-gxm" secondAttribute="centerX" id="bZY-eU-m7h"/>
-                            <constraint firstAttribute="centerY" secondItem="2mf-XC-gxm" secondAttribute="centerY" constant="30.5" id="elR-NV-OWO"/>
+                            <constraint firstAttribute="centerY" secondItem="2mf-XC-gxm" secondAttribute="centerY" constant="0.5" id="elR-NV-OWO"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
