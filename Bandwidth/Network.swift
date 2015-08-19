@@ -16,7 +16,7 @@ class Network : NSObject, GBPingDelegate {
     private var downloadTotal: Int = 0
     private var downloadTime: UInt64 = 0
     
-    func ping(completionHandler: (Int) -> ()) {
+    func startPing(completionHandler: (Int) -> ()) {
         let pinger = GBPing()
         pinger.host = Network.host
         pinger.delegate = self
@@ -34,7 +34,11 @@ class Network : NSObject, GBPingDelegate {
         self.pinger = pinger
     }
     
-    func download(size: Int, completionHandler: (Double) -> ()) {
+    func startDownload(completionHandler: (Double) -> ()) {
+        download(1, lastDur: 0, completionHandler: completionHandler)
+    }
+    
+    func download(size: Int, lastDur: UInt64, completionHandler: (Double) -> ()) {
         var file: String
         if size > 512 {
             file = "\(size / 1024)m"
@@ -53,13 +57,13 @@ class Network : NSObject, GBPingDelegate {
             self.downloadTotal += size
             self.downloadTime += duration
             println("Downloaded \(file) in \(duration)ms")
-            if duration > 1000 {
+            if duration > 1000 && lastDur > 500 {
                 let bandwidth = Double(self.downloadTotal * 1024 * 8) / Double(self.downloadTime * 1000)
                 let roundedBandwidth = round(bandwidth * 100) / 100
                 completionHandler(roundedBandwidth)
             }
             else {
-                self.download(size * 2, completionHandler: completionHandler)
+                self.download(size * 2, lastDur: duration, completionHandler: completionHandler)
             }
         })
     }
