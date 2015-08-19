@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FC2C37D11B8166D7005E499D /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2C37D01B8166D7005E499D /* Network.swift */; };
+		FC8C83841B85426E008E2996 /* bump_build_number.sh in Resources */ = {isa = PBXBuildFile; fileRef = FC8C83831B85426E008E2996 /* bump_build_number.sh */; };
 		FCBD539B1B8162B2005667DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBD539A1B8162B2005667DF /* AppDelegate.swift */; };
 		FCBD539D1B8162B2005667DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBD539C1B8162B2005667DF /* ViewController.swift */; };
 		FCBD53A01B8162B2005667DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCBD539E1B8162B2005667DF /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		FC2C37D01B8166D7005E499D /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		FC8C83831B85426E008E2996 /* bump_build_number.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = bump_build_number.sh; path = Tools/bump_build_number.sh; sourceTree = "<group>"; };
 		FCBD53951B8162B2005667DF /* Bandwidth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bandwidth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCBD53991B8162B2005667DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCBD539A1B8162B2005667DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +69,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FC8C83851B8542CB008E2996 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				FC8C83831B85426E008E2996 /* bump_build_number.sh */,
+			);
+			name = Tools;
+			sourceTree = "<group>";
+		};
 		FCBD538C1B8162B2005667DF = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +84,7 @@
 				FCBD53AD1B8162B2005667DF /* BandwidthTests */,
 				FCBD53961B8162B2005667DF /* Products */,
 				FCEA61C11B83BC5C00553DF4 /* Libraries */,
+				FC8C83851B8542CB008E2996 /* Tools */,
 			);
 			sourceTree = "<group>";
 		};
@@ -229,6 +240,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC8C83841B85426E008E2996 /* bump_build_number.sh in Resources */,
 				FCBD53A01B8162B2005667DF /* Main.storyboard in Resources */,
 				FCBD53A51B8162B2005667DF /* LaunchScreen.xib in Resources */,
 				FCBD53A21B8162B2005667DF /* Images.xcassets in Resources */,
