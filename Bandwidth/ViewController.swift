@@ -15,7 +15,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     
     @IBAction func startWasPressed(sender: UIButton) {
-        network.request(1)
+        network.download(1) { (bandwidth: Double) in
+            println("Bandwidth: \(bandwidth)Mbps")
+        }
     }
     
     @IBAction func pingWasPressed(sender: UIButton) {

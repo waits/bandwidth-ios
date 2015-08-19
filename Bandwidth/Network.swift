@@ -21,7 +21,6 @@ class Network : NSObject, GBPingDelegate {
         pinger.pingPeriod = 1.0
         pinger.setupWithBlock() {(success: Bool, error: NSError?) in
             if success {
-                println("Starting ping")
                 pinger.startPinging()
             }
             else {
@@ -30,25 +29,36 @@ class Network : NSObject, GBPingDelegate {
         }
         self.pinger = pinger
     }
-
-    func request(size: Int) {
-        let url = NSURL(string: "http://\(host)/\(size)m")!
+    
+    func download(size: Int, completionHandler: (Double) -> ()) {
+        var file: String
+        if size > 512 {
+            file = "\(size / 1024)m"
+        }
+        else {
+            file = "\(size)k"
+        }
+        let url = NSURL(string: "http://\(host)/\(file)")!
         var request = NSMutableURLRequest(URL: url)
         var response: AutoreleasingUnsafeMutablePointer<NSURLResponse?> = nil
         var err: NSErrorPointer = nil
         let startTime = mach_absolute_time()
-        if let data = NSURLConnection.sendSynchronousRequest(request, returningResponse: response, error: err) {
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError!) in
             let endTime = mach_absolute_time()
-            let duration = Int(endTime / NSEC_PER_MSEC - startTime / NSEC_PER_MSEC)
-            let rawBandwidth = size * 1024 * 1024 * 8 / duration
-            let bandwidth = Double(rawBandwidth * 1000) / Double(1024 * 1024)
+            let duration = endTime / NSEC_PER_MSEC - startTime / NSEC_PER_MSEC
+            let bandwidth = Double(size * 1024 * 8) / Double(duration * 1000)
             let roundedBandwidth = round(bandwidth * 100) / 100
-            println("Duration: \(duration)ms, Bandwidth: \(roundedBandwidth)Mbps (\(rawBandwidth * 1000)bps)")
-        }
-        else {
-            println(err)
-        }
+            println("Downloaded \(file) in \(duration)ms at \(roundedBandwidth)Mbps")
+            if duration > 1000 {
+                completionHandler(roundedBandwidth)
+            }
+            else {
+                self.download(size * 2, completionHandler: completionHandler)
+            }
+        })
     }
+    
+    // MARK: - GBPing Delegate
     
     func stopPing() {
         println("Stopping ping")
@@ -80,7 +90,6 @@ class Network : NSObject, GBPingDelegate {
     }
     
     func ping(pinger: GBPing!, didSendPingWithSummary summary: GBPingSummary!) {
-        println("Sent")
     }
     
     func ping(pinger: GBPing!, didTimeoutWithSummary summary: GBPingSummary!) {
