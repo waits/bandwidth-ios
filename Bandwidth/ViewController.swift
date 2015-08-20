@@ -15,16 +15,35 @@ class ViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     
     @IBAction func startWasPressed(sender: UIButton) {
-        self.network.startPing() {(latency: Int) in
-            self.network.startDownload() { (bandwidth: Double) in
-                let message = "Latency: \(latency)ms\nBandwidth: \(bandwidth)Mbps"
-                var alert = UIAlertController(title: "Results", message: message, preferredStyle: .Alert)
-                let closeAction = UIAlertAction(title: "Done", style: .Default, handler: nil)
-                alert.addAction(closeAction)
-                self.presentViewController(alert, animated: true, completion: nil)
+        self.network.startPing() {(latency: Int?) in
+            if let latency = latency {
+                self.network.startDownload() { (bandwidth: Double?) in
+                    if let bandwidth = bandwidth {
+                        let message = "Latency: \(latency)ms\nBandwidth: \(bandwidth)Mbps"
+                        self.showAlert("Results", message: message, action: "Done")
+                    }
+                    else {
+                        self.showError()
+                    }
+                }
+            }
+            else {
+                self.showError()
             }
         }
         
+    }
+    
+    private func showError() {
+        let message = "Your internet connection is pretty spotty. Try connecting to a more reliable network and start the test again."
+        self.showAlert("Test Failed", message: message, action: "Close")
+    }
+    
+    private func showAlert(title: String, message: String, action: String) {
+        var alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let closeAction = UIAlertAction(title: action, style: .Default, handler: nil)
+        alert.addAction(closeAction)
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 
     override func viewDidLoad() {
