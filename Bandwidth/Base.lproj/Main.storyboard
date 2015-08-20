@@ -23,6 +23,9 @@
                                     <color key="titleColor" red="0.38431372549999998" green="0.71372549019999998" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="disabled" title="Testing...">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="startWasPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e6U-Li-OWR"/>
                                 </connections>

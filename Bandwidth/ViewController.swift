@@ -15,11 +15,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     
     @IBAction func startWasPressed(sender: UIButton) {
+        startButton.enabled = false
         self.network.startPing() {(latency: Int?) in
             if let latency = latency {
                 self.network.startDownload() { (bandwidth: Double?) in
                     if let bandwidth = bandwidth {
-                        let message = "Latency: \(latency)ms\nBandwidth: \(bandwidth)Mbps"
+                        let message = "Latency: \(latency)ms\nDownload: \(bandwidth)Mbps"
                         self.showAlert("Results", message: message, action: "Done")
                     }
                     else {
@@ -41,7 +42,9 @@ class ViewController: UIViewController {
     
     private func showAlert(title: String, message: String, action: String) {
         var alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        let closeAction = UIAlertAction(title: action, style: .Default, handler: nil)
+        let closeAction = UIAlertAction(title: action, style: .Default) { (action: UIAlertAction!) in
+            self.startButton.enabled = true
+        }
         alert.addAction(closeAction)
         self.presentViewController(alert, animated: true, completion: nil)
     }
