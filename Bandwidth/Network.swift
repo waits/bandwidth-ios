@@ -39,6 +39,10 @@ class Network : NSObject, GBPingDelegate {
         download(1, last: (0, 0), completionHandler: completionHandler)
     }
     
+    func startUpload(completionHandler: (Double?) -> ()) {
+        upload(1, last: (0, 0), completionHandler: completionHandler)
+    }
+    
     func download(size: Int, last: (size: Int, time: Double), completionHandler: (Double?) -> ()) {
         var file: String
         if size > 512 {
@@ -71,8 +75,46 @@ class Network : NSObject, GBPingDelegate {
         })
     }
     
+    func upload(size: Int, last: (size: Int, time: Double), completionHandler: (Double?) -> ()) {
+        var file: String
+        if size > 512 {
+            file = "\(size / 1024)m"
+        }
+        else {
+            file = "\(size)k"
+        }
+        let url = NSURL(string: "https://bandwidth.waits.io/upload")!
+        var request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "POST"
+        request.HTTPBody = randomData(size)
+        var response: AutoreleasingUnsafeMutablePointer<NSURLResponse?> = nil
+        var err: NSErrorPointer = nil
+        let startTime = NSDate()
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError!) in
+            if error == nil {
+                let duration = startTime.timeIntervalSinceNow * -1
+                println("Uploaded \(file) in \(Int(duration * 1000))ms")
+                if duration > 1.0 && last.time > 0.5 {
+                    let bandwidth = Double((size + last.size) / 1024 * 8) / (duration + last.time)
+                    let roundedBandwidth = round(bandwidth * 100) / 100
+                    completionHandler(roundedBandwidth)
+                }
+                else {
+                    self.upload(size * 2, last: (size, duration), completionHandler: completionHandler)
+                }
+            }
+            else {
+                completionHandler(nil)
+            }
+        })
+    }
+    
     func pingSetupDidFail() {
         pingHandler?(nil)
+    }
+    
+    private func randomData(size: Int) -> NSData {
+        return NSMutableData(length: size * 1024)!.copy() as! NSData
     }
     
     // MARK: - GBPing Delegate

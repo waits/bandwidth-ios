@@ -18,10 +18,17 @@ class ViewController: UIViewController {
         startButton.enabled = false
         self.network.startPing() {(latency: Int?) in
             if let latency = latency {
-                self.network.startDownload() { (bandwidth: Double?) in
-                    if let bandwidth = bandwidth {
-                        let message = "Latency: \(latency)ms\nDownload: \(bandwidth)Mbps"
-                        self.showAlert("Results", message: message, action: "Done")
+                self.network.startDownload() { (download: Double?) in
+                    if let download = download {
+                        self.network.startUpload() { (upload: Double?) in
+                            if let upload = upload {
+                                let message = "Latency: \(latency)ms\nDownload: \(download)Mbps\nUpload: \(upload)Mbps"
+                                self.showAlert("Results", message: message, action: "Done")
+                            }
+                            else {
+                                self.showError()
+                            }
+                        }
                     }
                     else {
                         self.showError()
