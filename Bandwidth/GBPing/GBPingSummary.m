@@ -55,6 +55,8 @@
     self.host = nil;
     self.sendDate = nil;
     self.receiveDate = nil;
+    
+    [super dealloc];
 }
 
 #pragma mark - description

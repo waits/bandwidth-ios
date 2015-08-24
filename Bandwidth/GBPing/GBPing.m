@@ -229,7 +229,7 @@ static NSTimeInterval const kDefaultTimeout =           2.0;
         
         //get the first IPv4 address
         Boolean resolved;
-        const struct sockaddr *addrPtr;
+        const struct sockaddr *addrPtr = nil;
         NSArray *addresses = (__bridge NSArray *)CFHostGetAddressing(_hostRef, &resolved);
         if (resolved && (addresses != nil)) {
             resolved = false;
@@ -804,6 +804,8 @@ static uint16_t in_cksum(const void *buffer, size_t bufferLen)
         CFRelease(_hostRef);
         _hostRef = nil;
     }
+    
+    [super dealloc];
 }
 
 @end
