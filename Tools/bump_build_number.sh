@@ -18,7 +18,7 @@ if [ -n "$(find "$dir" \! -path "*xcuserdata*" \! -path "*.git" -newer "$plist")
     buildnum=$(expr $buildnum + 1)
     /usr/libexec/Plistbuddy -c "Set CFBundleVersion $buildnum" "$plist"
 
-    cd /Users/dylan/Documents/Xcode/Sales\ Tracker/Sales\ Tracker
+    cd /Users/dylan/Documents/Xcode/Bandwidth/Bandwidth
     shortnum=$(/usr/libexec/Plistbuddy -c "Print CFBundleShortVersionString" "$plist")
     /usr/libexec/PlistBuddy -c "Set :PreferenceSpecifiers:1:DefaultValue $shortnum" Settings.bundle/Root.plist
     /usr/libexec/PlistBuddy -c "Set :PreferenceSpecifiers:2:DefaultValue $buildnum" Settings.bundle/Root.plist

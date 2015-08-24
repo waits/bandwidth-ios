@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FC2C37D11B8166D7005E499D /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2C37D01B8166D7005E499D /* Network.swift */; };
+		FC62EE141B8AAC59001DD60E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FC62EE131B8AAC59001DD60E /* Settings.bundle */; };
 		FC8C83841B85426E008E2996 /* bump_build_number.sh in Resources */ = {isa = PBXBuildFile; fileRef = FC8C83831B85426E008E2996 /* bump_build_number.sh */; };
 		FCBD539B1B8162B2005667DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBD539A1B8162B2005667DF /* AppDelegate.swift */; };
 		FCBD539D1B8162B2005667DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBD539C1B8162B2005667DF /* ViewController.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		FC2C37D01B8166D7005E499D /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		FC62EE131B8AAC59001DD60E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		FC8C83831B85426E008E2996 /* bump_build_number.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = bump_build_number.sh; path = Tools/bump_build_number.sh; sourceTree = "<group>"; };
 		FCBD53951B8162B2005667DF /* Bandwidth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bandwidth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCBD53991B8162B2005667DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			children = (
 				FCEA61AE1B83BA5200553DF4 /* Bandwidth-Bridging-Header.h */,
 				FCBD53991B8162B2005667DF /* Info.plist */,
+				FC62EE131B8AAC59001DD60E /* Settings.bundle */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 			files = (
 				FC8C83841B85426E008E2996 /* bump_build_number.sh in Resources */,
 				FCBD53A01B8162B2005667DF /* Main.storyboard in Resources */,
+				FC62EE141B8AAC59001DD60E /* Settings.bundle in Resources */,
 				FCBD53A51B8162B2005667DF /* LaunchScreen.xib in Resources */,
 				FCBD53A21B8162B2005667DF /* Images.xcassets in Resources */,
 			);
