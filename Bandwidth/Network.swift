@@ -9,7 +9,7 @@
 import Foundation
 
 class Network : NSObject, GBPingDelegate {
-    private static let host = "d1djlrw04zbni.cloudfront.net"
+    private static let host = "cdn.bandwidth.waits.io"
     private var pinger: GBPing?
     private var pingsCompleted: Int = 0
     private var pingTime: Double = 0.0
@@ -51,15 +51,13 @@ class Network : NSObject, GBPingDelegate {
         else {
             file = "\(size)k"
         }
-        let url = NSURL(string: "http://\(Network.host)/\(file)")!
-        var request = NSMutableURLRequest(URL: url)
-        var response: AutoreleasingUnsafeMutablePointer<NSURLResponse?> = nil
-        var err: NSErrorPointer = nil
+        let url = NSURL(string: "https://\(Network.host)/\(file)")!
+        let request = NSMutableURLRequest(URL: url)
         let startTime = NSDate()
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError!) in
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse?, data: NSData?, error: NSError?) in
             if error == nil {
                 let duration = startTime.timeIntervalSinceNow * -1
-                println("Downloaded \(file) in \(Int(duration * 1000))ms")
+                print("Downloaded \(file) in \(Int(duration * 1000))ms")
                 if duration > 1.0 && last.time > 0.5 {
                     let bandwidth = Double((size + last.size) / 1024 * 8) / (duration + last.time)
                     let roundedBandwidth = round(bandwidth * 100) / 100
@@ -84,16 +82,14 @@ class Network : NSObject, GBPingDelegate {
             file = "\(size)k"
         }
         let url = NSURL(string: "https://bandwidth.waits.io/upload")!
-        var request = NSMutableURLRequest(URL: url)
+        let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "POST"
         request.HTTPBody = randomData(size)
-        var response: AutoreleasingUnsafeMutablePointer<NSURLResponse?> = nil
-        var err: NSErrorPointer = nil
         let startTime = NSDate()
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError!) in
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse?, data: NSData?, error: NSError?) in
             if error == nil {
                 let duration = startTime.timeIntervalSinceNow * -1
-                println("Uploaded \(file) in \(Int(duration * 1000))ms")
+                print("Uploaded \(file) in \(Int(duration * 1000))ms")
                 if duration > 1.0 && last.time > 0.5 {
                     let bandwidth = Double((size + last.size) / 1024 * 8) / (duration + last.time)
                     let roundedBandwidth = round(bandwidth * 100) / 100
@@ -120,12 +116,12 @@ class Network : NSObject, GBPingDelegate {
     // MARK: - GBPing Delegate
     
     func stopPing() {
-        println("Stopping ping")
+        print("Stopping ping")
         self.pinger?.stop()
     }
     
     func ping(pinger: GBPing!, didFailToSendPingWithSummary summary: GBPingSummary!, error: NSError!) {
-        println("Failed: \(error)")
+        print("Failed: \(error)")
         if summary.sequenceNumber >= 9 {
             pinger.stop()
             pingHandler?(nil)
@@ -133,14 +129,14 @@ class Network : NSObject, GBPingDelegate {
     }
     
     func ping(pinger: GBPing!, didFailWithError error: NSError!) {
-        println("Error: \(error)")
+        print("Error: \(error)")
     }
     
     func ping(pinger: GBPing!, didReceiveReplyWithSummary summary: GBPingSummary!) {
         let rtt = summary.rtt * 1000
         pingTime += rtt
         pingsCompleted++
-        println("Ping #\(summary.sequenceNumber): \(Int(round(rtt)))ms")
+        print("Ping #\(summary.sequenceNumber): \(Int(round(rtt)))ms")
         if pingsCompleted >= 5 {
             pinger.stop()
             let avg = Int(round(pingTime / Double(pingsCompleted)))
@@ -149,13 +145,13 @@ class Network : NSObject, GBPingDelegate {
     }
     
     func ping(pinger: GBPing!, didReceiveUnexpectedReplyWithSummary summary: GBPingSummary!) {
-        println("Unexpected reply: \(summary)")
+        print("Unexpected reply: \(summary)")
     }
     
     func ping(pinger: GBPing!, didSendPingWithSummary summary: GBPingSummary!) {
     }
     
     func ping(pinger: GBPing!, didTimeoutWithSummary summary: GBPingSummary!) {
-        println("Timeout: \(summary)")
+        print("Timeout: \(summary)")
     }
 }

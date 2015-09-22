@@ -48,8 +48,8 @@ class ViewController: UIViewController {
     }
     
     private func showAlert(title: String, message: String, action: String) {
-        var alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        let closeAction = UIAlertAction(title: action, style: .Default) { (action: UIAlertAction!) in
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let closeAction = UIAlertAction(title: action, style: .Default) { (action: UIAlertAction) in
             self.startButton.enabled = true
         }
         alert.addAction(closeAction)
