@@ -51,10 +51,14 @@ class Network : NSObject, GBPingDelegate {
         else {
             file = "\(size)k"
         }
+        
         let url = NSURL(string: "https://\(Network.host)/\(file)")!
-        let request = NSMutableURLRequest(URL: url)
+        let sessionConfig = NSURLSessionConfiguration.ephemeralSessionConfiguration()
+        let session = NSURLSession(configuration: sessionConfig)
         let startTime = NSDate()
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse?, data: NSData?, error: NSError?) in
+        
+        let downloadTask = session.dataTaskWithURL(url) { (data: NSData?, response: NSURLResponse?, error: NSError?) in
+            print("done")
             if error == nil {
                 let duration = startTime.timeIntervalSinceNow * -1
                 print("Downloaded \(file) in \(Int(duration * 1000))ms")
@@ -68,9 +72,12 @@ class Network : NSObject, GBPingDelegate {
                 }
             }
             else {
+                print(error)
                 completionHandler(nil)
             }
-        })
+        }
+        
+        downloadTask.resume()
     }
     
     func upload(size: Int, last: (size: Int, time: Double), completionHandler: (Double?) -> ()) {
@@ -82,11 +89,16 @@ class Network : NSObject, GBPingDelegate {
             file = "\(size)k"
         }
         let url = NSURL(string: "https://bandwidth.waits.io/upload")!
+        let startTime = NSDate()
+        
+        let sessionConfig = NSURLSessionConfiguration.ephemeralSessionConfiguration()
+        let session = NSURLSession(configuration: sessionConfig)
+        
         let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "POST"
         request.HTTPBody = randomData(size)
-        let startTime = NSDate()
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse?, data: NSData?, error: NSError?) in
+        
+        let uploadTask = session.dataTaskWithRequest(request) { (data: NSData?, response: NSURLResponse?, error: NSError?) in
             if error == nil {
                 let duration = startTime.timeIntervalSinceNow * -1
                 print("Uploaded \(file) in \(Int(duration * 1000))ms")
@@ -102,7 +114,9 @@ class Network : NSObject, GBPingDelegate {
             else {
                 completionHandler(nil)
             }
-        })
+        }
+        
+        uploadTask.resume()
     }
     
     func pingSetupDidFail() {

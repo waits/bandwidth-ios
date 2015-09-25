@@ -23,20 +23,28 @@ class ViewController: UIViewController {
                         self.network.startUpload() { (upload: Double?) in
                             if let upload = upload {
                                 let message = "Latency: \(latency)ms\nDownload: \(download)Mbps\nUpload: \(upload)Mbps"
-                                self.showAlert("Results", message: message, action: "Done")
+                                dispatch_async(dispatch_get_main_queue()) {
+                                    self.showAlert("Results", message: message, action: "Done")
+                                }
                             }
                             else {
-                                self.showError()
+                                dispatch_async(dispatch_get_main_queue()) {
+                                    self.showError()
+                                }
                             }
                         }
                     }
                     else {
-                        self.showError()
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.showError()
+                        }
                     }
                 }
             }
             else {
-                self.showError()
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.showError()
+                }
             }
         }
         
