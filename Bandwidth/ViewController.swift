@@ -11,43 +11,38 @@ import UIKit
 class ViewController: UIViewController {
     
     let network = Network()
+    let download = Download()
+    @IBOutlet weak var downloadLabel: UILabel!
     
     @IBOutlet weak var startButton: UIButton!
     
     @IBAction func startWasPressed(sender: UIButton) {
         startButton.enabled = false
-        self.network.startPing() {(latency: Int?) in
-            if let latency = latency {
-                self.network.startDownload() { (download: Double?) in
-                    if let download = download {
-                        self.network.startUpload() { (upload: Double?) in
-                            if let upload = upload {
-                                let message = "Latency: \(latency)ms\nDownload: \(download)Mbps\nUpload: \(upload)Mbps"
-                                dispatch_async(dispatch_get_main_queue()) {
-                                    self.showAlert("Results", message: message, action: "Done")
-                                }
-                            }
-                            else {
-                                dispatch_async(dispatch_get_main_queue()) {
-                                    self.showError()
-                                }
-                            }
-                        }
-                    }
-                    else {
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.showError()
-                        }
-                    }
-                }
-            }
-            else {
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.showError()
+        downloadLabel.textColor = UIColor.blackColor()
+        self.download.startDownloadTest(downloadTestDidReturnData)
+        
+    }
+    
+    func downloadTestDidReturnData(bandwidth: Double?, finished: Bool) {
+        if let bandwidth = bandwidth {
+            print(bandwidth)
+            dispatch_async(dispatch_get_main_queue()) {
+                self.downloadLabel.text = "\(round(bandwidth * 100) / 100)Mbps"
+                if finished {
+                    self.downloadLabel.textColor = UIColor.blueColor()
+                    self.startButton.enabled = true
                 }
             }
         }
-        
+        else {
+            dispatch_async(dispatch_get_main_queue()) {
+                self.downloadLabel.text = "Error"
+                if finished {
+                    self.downloadLabel.textColor = UIColor.redColor()
+                    self.startButton.enabled = true
+                }
+            }
+        }
     }
     
     private func showError() {

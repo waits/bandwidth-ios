@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
@@ -31,10 +30,18 @@
                                     <action selector="startWasPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e6U-Li-OWR"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UUe-BU-X6f">
+                                <rect key="frame" x="279" y="437" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="UUe-BU-X6f" firstAttribute="top" secondItem="2mf-XC-gxm" secondAttribute="bottom" constant="111" id="4YX-Jn-bww"/>
                             <constraint firstAttribute="centerY" secondItem="2mf-XC-gxm" secondAttribute="centerY" constant="30.5" id="8Si-dS-bq7"/>
+                            <constraint firstItem="UUe-BU-X6f" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FBS-pW-Zwc"/>
                             <constraint firstAttribute="centerX" secondItem="2mf-XC-gxm" secondAttribute="centerX" id="bZY-eU-m7h"/>
                             <constraint firstAttribute="centerY" secondItem="2mf-XC-gxm" secondAttribute="centerY" constant="0.5" id="elR-NV-OWO"/>
                         </constraints>
@@ -45,6 +52,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="downloadLabel" destination="UUe-BU-X6f" id="DMf-wY-MbZ"/>
                         <outlet property="startButton" destination="2mf-XC-gxm" id="u7u-es-son"/>
                     </connections>
                 </viewController>

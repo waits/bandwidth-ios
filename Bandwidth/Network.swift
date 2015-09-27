@@ -9,7 +9,6 @@
 import Foundation
 
 class Network : NSObject, GBPingDelegate {
-    private static let host = "cdn.bandwidth.waits.io"
     private var pinger: GBPing?
     private var pingsCompleted: Int = 0
     private var pingTime: Double = 0.0
@@ -18,7 +17,7 @@ class Network : NSObject, GBPingDelegate {
     func startPing(completionHandler: (Int?) -> ()) {
         self.pingHandler = completionHandler
         let pinger = GBPing()
-        pinger.host = Network.host
+        pinger.host = "cdn.bandwidth.waits.io"
         pinger.delegate = self
         pinger.timeout = 0.9
         pinger.pingPeriod = 1.0
@@ -35,49 +34,8 @@ class Network : NSObject, GBPingDelegate {
         self.pinger = pinger
     }
     
-    func startDownload(completionHandler: (Double?) -> ()) {
-        download(1, last: (0, 0), completionHandler: completionHandler)
-    }
-    
     func startUpload(completionHandler: (Double?) -> ()) {
         upload(1, last: (0, 0), completionHandler: completionHandler)
-    }
-    
-    func download(size: Int, last: (size: Int, time: Double), completionHandler: (Double?) -> ()) {
-        var file: String
-        if size > 512 {
-            file = "\(size / 1024)m"
-        }
-        else {
-            file = "\(size)k"
-        }
-        
-        let url = NSURL(string: "https://\(Network.host)/\(file)")!
-        let sessionConfig = NSURLSessionConfiguration.ephemeralSessionConfiguration()
-        let session = NSURLSession(configuration: sessionConfig)
-        let startTime = NSDate()
-        
-        let downloadTask = session.dataTaskWithURL(url) { (data: NSData?, response: NSURLResponse?, error: NSError?) in
-            print("done")
-            if error == nil {
-                let duration = startTime.timeIntervalSinceNow * -1
-                print("Downloaded \(file) in \(Int(duration * 1000))ms")
-                if duration > 1.0 && last.time > 0.5 {
-                    let bandwidth = Double((size + last.size) / 1024 * 8) / (duration + last.time)
-                    let roundedBandwidth = round(bandwidth * 100) / 100
-                    completionHandler(roundedBandwidth)
-                }
-                else {
-                    self.download(size * 2, last: (size, duration), completionHandler: completionHandler)
-                }
-            }
-            else {
-                print(error)
-                completionHandler(nil)
-            }
-        }
-        
-        downloadTask.resume()
     }
     
     func upload(size: Int, last: (size: Int, time: Double), completionHandler: (Double?) -> ()) {
