@@ -26,7 +26,7 @@ class FileTest : NSObject {
         self.upload = upload
     }
     
-    func startDownloadTest() {
+    func start() {
         lastFile = 1
         downloadFile(1)
     }
@@ -34,9 +34,10 @@ class FileTest : NSObject {
     func responseHandler(data: NSData?, response: NSURLResponse?, error: NSError?) {
         if error == nil {
             let duration = requestStartTime!.timeIntervalSinceNow * -1
-            let rawSize = data!.length
-            let bandwidth = Double(rawSize) / 1_048_576.0 * 8.0 / duration
-            print("Downloaded \(rawSize)b in \(Int(duration * 1000))ms at \(round(bandwidth * 100) / 100)Mbps")
+            let rawSize = lastFile
+            let bandwidth = Double(rawSize) / 1024.0 * 8.0 / duration
+            let verb = upload ? "Uploaded" : "Downloaded"
+            print("\(verb) \(rawSize)k in \(Int(duration * 1000))ms at \(round(bandwidth * 100) / 100)Mbps")
             if duration > 2.0 {
                 if bandwidth / lastResult > 2.0 || bandwidth / lastResult < 0.5 {
                     dispatch_async(dispatch_get_main_queue()) {self.delegate.fileTest(self, didMeasureBandwidth: bandwidth)}

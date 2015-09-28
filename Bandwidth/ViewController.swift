@@ -21,7 +21,10 @@ class ViewController: UIViewController, FileTestDelegate {
     @IBAction func startWasPressed(sender: UIButton) {
         startButton.enabled = false
         downloadLabel.textColor = UIColor.blackColor()
-        download.startDownloadTest()
+        downloadLabel.text = ""
+        uploadLabel.textColor = UIColor.blackColor()
+        uploadLabel.text = ""
+        download.start()
     }
     
     
@@ -42,13 +45,25 @@ class ViewController: UIViewController, FileTestDelegate {
     // File Test Delegate
     
     func fileTest(fileTest: FileTest, didMeasureBandwidth bandwidth: Double) {
-        self.downloadLabel.text = "\(round(bandwidth * 100) / 100)Mbps"
+        if fileTest.upload {
+            self.uploadLabel.text = "\(round(bandwidth * 100) / 100)Mbps"
+        }
+        else {
+            self.downloadLabel.text = "\(round(bandwidth * 100) / 100)Mbps"
+        }
     }
     
     func fileTest(fileTest: FileTest, didFinishWithBandwidth bandwidth: Double) {
-        self.downloadLabel.text = "\(round(bandwidth * 100) / 100)Mbps"
-        self.downloadLabel.textColor = UIColor.redColor()
-        self.startButton.enabled = true
+        if fileTest.upload {
+            self.uploadLabel.text = "\(round(bandwidth * 100) / 100)Mbps"
+            self.uploadLabel.textColor = UIColor.redColor()
+            self.startButton.enabled = true
+        }
+        else {
+            self.downloadLabel.text = "\(round(bandwidth * 100) / 100)Mbps"
+            self.downloadLabel.textColor = UIColor.redColor()
+            upload.start()
+        }
     }
     
     func fileTestDidFail() {
