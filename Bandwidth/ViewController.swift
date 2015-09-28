@@ -35,10 +35,9 @@ class ViewController: UIViewController {
         else {
             dispatch_async(dispatch_get_main_queue()) {
                 self.downloadLabel.text = "Error"
-                if finished {
-                    self.downloadLabel.textColor = UIColor.redColor()
-                    self.startButton.enabled = true
-                }
+                self.downloadLabel.textColor = UIColor.redColor()
+                self.startButton.enabled = true
+                self.showError()
             }
         }
     }
