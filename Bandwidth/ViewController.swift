@@ -25,7 +25,6 @@ class ViewController: UIViewController {
     
     func downloadTestDidReturnData(bandwidth: Double?, finished: Bool) {
         if let bandwidth = bandwidth {
-            print(bandwidth)
             dispatch_async(dispatch_get_main_queue()) {
                 self.downloadLabel.text = "\(round(bandwidth * 100) / 100)Mbps"
                 if finished {

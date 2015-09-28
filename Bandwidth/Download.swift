@@ -33,14 +33,15 @@ class Download : NSObject {
             if error == nil {
                 let duration = startTime.timeIntervalSinceNow * -1
                 let bandwidth = Double(size) / 1024.0 * 8.0 / duration
-                print("Downloaded \(file) in \(Int(duration * 1000))ms")
+                print("Downloaded \(file) in \(Int(duration * 1000))ms at \(round(bandwidth * 100) / 100)Mbps")
                 if duration > 2.0 {
-                    if bandwidth / last > 2.0 {
+                    if bandwidth / last > 2.0 || bandwidth / last < 0.5 {
                         callback(bandwidth, false)
-                        self.downloadFile(size, last: bandwidth, callback: callback)
+                        self.downloadFile(size, last: last, callback: callback)
                     }
                     else {
-                        callback(bandwidth, true)
+                        let final = (bandwidth * 2 + last) / 3.0
+                        callback(final, true)
                     }
                 }
                 else {
