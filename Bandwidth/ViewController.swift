@@ -8,39 +8,22 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, FileTestDelegate {
     
     let network = Network()
-    var download: Download!
+    var download: FileTest!
+    var upload: FileTest!
     @IBOutlet weak var downloadLabel: UILabel!
+    @IBOutlet weak var uploadLabel: UILabel!
     
     @IBOutlet weak var startButton: UIButton!
     
     @IBAction func startWasPressed(sender: UIButton) {
         startButton.enabled = false
         downloadLabel.textColor = UIColor.blackColor()
-        self.download.startDownloadTest()
+        download.startDownloadTest()
     }
     
-    func downloadTestDidReturnData(bandwidth: Double?, finished: Bool) {
-        if let bandwidth = bandwidth {
-            dispatch_async(dispatch_get_main_queue()) {
-                self.downloadLabel.text = "\(round(bandwidth * 100) / 100)Mbps"
-                if finished {
-                    self.downloadLabel.textColor = UIColor.blueColor()
-                    self.startButton.enabled = true
-                }
-            }
-        }
-        else {
-            dispatch_async(dispatch_get_main_queue()) {
-                self.downloadLabel.text = "Error"
-                self.downloadLabel.textColor = UIColor.redColor()
-                self.startButton.enabled = true
-                self.showError()
-            }
-        }
-    }
     
     private func showError() {
         let message = "Your internet connection is pretty spotty. Try connecting to a more reliable network and start the test again."
@@ -55,10 +38,30 @@ class ViewController: UIViewController {
         alert.addAction(closeAction)
         self.presentViewController(alert, animated: true, completion: nil)
     }
+    
+    // File Test Delegate
+    
+    func fileTest(fileTest: FileTest, didMeasureBandwidth bandwidth: Double) {
+        self.downloadLabel.text = "\(round(bandwidth * 100) / 100)Mbps"
+    }
+    
+    func fileTest(fileTest: FileTest, didFinishWithBandwidth bandwidth: Double) {
+        self.downloadLabel.text = "\(round(bandwidth * 100) / 100)Mbps"
+        self.downloadLabel.textColor = UIColor.redColor()
+        self.startButton.enabled = true
+    }
+    
+    func fileTestDidFail() {
+        startButton.enabled = true
+        showError()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        download = Download(callback: downloadTestDidReturnData)
+        download = FileTest(upload: false)
+        download.delegate = self
+        upload = FileTest(upload: true)
+        upload.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
