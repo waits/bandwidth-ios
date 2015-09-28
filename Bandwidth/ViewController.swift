@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     let network = Network()
-    let download = Download()
+    var download: Download!
     @IBOutlet weak var downloadLabel: UILabel!
     
     @IBOutlet weak var startButton: UIButton!
@@ -19,8 +19,7 @@ class ViewController: UIViewController {
     @IBAction func startWasPressed(sender: UIButton) {
         startButton.enabled = false
         downloadLabel.textColor = UIColor.blackColor()
-        self.download.startDownloadTest(downloadTestDidReturnData)
-        
+        self.download.startDownloadTest()
     }
     
     func downloadTestDidReturnData(bandwidth: Double?, finished: Bool) {
@@ -60,7 +59,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        download = Download(callback: downloadTestDidReturnData)
     }
 
     override func didReceiveMemoryWarning() {
