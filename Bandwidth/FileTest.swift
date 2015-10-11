@@ -15,7 +15,6 @@ protocol FileTestDelegate {
 }
 
 class FileTest : NSObject {
-    private static let host = "cdn.bandwidth.waits.io"
     private var requestStartTime: NSDate?
     private var lastFile: Int!
     private var lastResult: Double = 0
@@ -28,7 +27,7 @@ class FileTest : NSObject {
     
     func start() {
         lastFile = 1
-        downloadFile(1)
+        dispatchRequest(1)
     }
     
     func responseHandler(data: NSData?, response: NSURLResponse?, error: NSError?) {
@@ -41,7 +40,7 @@ class FileTest : NSObject {
             if duration > 2.0 {
                 if bandwidth / lastResult > 2.0 || bandwidth / lastResult < 0.5 {
                     dispatch_async(dispatch_get_main_queue()) {self.delegate.fileTest(self, didMeasureBandwidth: bandwidth)}
-                    self.downloadFile(lastFile)
+                    self.dispatchRequest(lastFile)
                 }
                 else {
                     let final = (bandwidth * 2 + lastResult) / 3.0
@@ -52,7 +51,7 @@ class FileTest : NSObject {
                 dispatch_async(dispatch_get_main_queue()) {self.delegate.fileTest(self, didMeasureBandwidth: bandwidth)}
                 lastResult = bandwidth
                 lastFile = lastFile * 2
-                self.downloadFile(lastFile)
+                self.dispatchRequest(lastFile)
             }
         }
         else {
@@ -61,7 +60,7 @@ class FileTest : NSObject {
         }
     }
     
-    private func downloadFile(size: Int) {
+    private func dispatchRequest(size: Int) {
         var file: String
         if lastFile > 512 {
             file = "\(lastFile / 1024)m"
@@ -70,13 +69,14 @@ class FileTest : NSObject {
             file = "\(lastFile)k"
         }
         
-        let url = NSURL(string: "https://\(FileTest.host)/\(file)")!
         let sessionConfig = NSURLSessionConfiguration.ephemeralSessionConfiguration()
+        sessionConfig.timeoutIntervalForResource = 8.0
         let session = NSURLSession(configuration: sessionConfig)
         let task: NSURLSessionDataTask
         requestStartTime = NSDate()
         
         if self.upload {
+            let url = NSURL(string: "https://bandwidth.waits.io/upload")!
             let request = NSMutableURLRequest(URL: url)
             request.HTTPMethod = "POST"
             request.HTTPBody = Network.randomData(size)
@@ -84,6 +84,7 @@ class FileTest : NSObject {
             task.resume()
         }
         else {
+            let url = NSURL(string: "https://cdn.bandwidth.waits.io/\(file)")!
             task = session.dataTaskWithURL(url, completionHandler: responseHandler)
             task.resume()
         }
