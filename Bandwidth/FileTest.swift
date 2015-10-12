@@ -14,10 +14,9 @@ protocol FileTestDelegate {
     func fileTestDidFail()
 }
 
-class FileTest : NSObject {
+class FileTest : NSObject, NSURLSessionDataDelegate {
     private var requestStartTime: NSDate?
-    private var lastFile: Int!
-    private var lastResult: Double = 0
+    var total: Int = 0
     var upload: Bool
     var delegate: FileTestDelegate!
     
@@ -26,68 +25,72 @@ class FileTest : NSObject {
     }
     
     func start() {
-        lastFile = 1
-        dispatchRequest(1)
-    }
-    
-    func responseHandler(data: NSData?, response: NSURLResponse?, error: NSError?) {
-        if error == nil {
-            let duration = requestStartTime!.timeIntervalSinceNow * -1
-            let rawSize = lastFile
-            let bandwidth = Double(rawSize) / 1024.0 * 8.0 / duration
-            let verb = upload ? "Uploaded" : "Downloaded"
-            print("\(verb) \(rawSize)k in \(Int(duration * 1000))ms at \(round(bandwidth * 100) / 100)Mbps")
-            if duration > 2.0 {
-                if bandwidth / lastResult > 2.0 || bandwidth / lastResult < 0.5 {
-                    dispatch_async(dispatch_get_main_queue()) {self.delegate.fileTest(self, didMeasureBandwidth: bandwidth)}
-                    self.dispatchRequest(lastFile)
-                }
-                else {
-                    let final = (bandwidth * 2 + lastResult) / 3.0
-                    dispatch_async(dispatch_get_main_queue()) {self.delegate.fileTest(self, didFinishWithBandwidth: final)}
-                }
-            }
-            else {
-                dispatch_async(dispatch_get_main_queue()) {self.delegate.fileTest(self, didMeasureBandwidth: bandwidth)}
-                lastResult = bandwidth
-                lastFile = lastFile * 2
-                self.dispatchRequest(lastFile)
-            }
-        }
-        else {
-            print(error)
-            dispatch_async(dispatch_get_main_queue()) {self.delegate.fileTestDidFail()}
-        }
+        dispatchRequest(128 * 1024 * 1024)
     }
     
     private func dispatchRequest(size: Int) {
-        var file: String
-        if lastFile > 512 {
-            file = "\(lastFile / 1024)m"
-        }
-        else {
-            file = "\(lastFile)k"
-        }
+        let file = convertSize(size)
         
         let sessionConfig = NSURLSessionConfiguration.ephemeralSessionConfiguration()
-        sessionConfig.timeoutIntervalForResource = 8.0
-        let session = NSURLSession(configuration: sessionConfig)
+        sessionConfig.URLCache = NSURLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
+        let session = NSURLSession(configuration: sessionConfig, delegate: self, delegateQueue: nil)
         let task: NSURLSessionDataTask
-        requestStartTime = NSDate()
         
         if self.upload {
             let url = NSURL(string: "https://bandwidth.waits.io/upload")!
             let request = NSMutableURLRequest(URL: url)
             request.HTTPMethod = "POST"
             request.HTTPBody = Network.randomData(size)
-            task = session.dataTaskWithRequest(request, completionHandler: responseHandler)
+            task = session.dataTaskWithRequest(request)
+            
+            requestStartTime = NSDate()
             task.resume()
         }
         else {
             let url = NSURL(string: "https://cdn.bandwidth.waits.io/\(file)")!
-            task = session.dataTaskWithURL(url, completionHandler: responseHandler)
+            task = session.dataTaskWithURL(url)
             task.resume()
         }
+    }
+    
+    private func convertSize(size: Int) -> String {
+        if size >= 1_048_576 {
+            return size % 1_048_576 == 0 ? "\(size / 1_048_576)m" : "\(Double(size) / 1_048_576.0)m"
+        }
+        if size > 1024 {
+            return size % 1024 == 0 ? "\(size / 1024)k" : "\(Double(size) / 1024.0)k"
+        }
+        else {
+            return "\(size)b"
+        }
+    }
+    
+    private func processData(session: NSURLSession, data: Int) {
+        let duration = requestStartTime!.timeIntervalSinceNow * -1
+        let bandwidth = Double(data) * 8.0 / 1_048_576.0 / duration
         
+        if duration > 5.0 {
+            session.invalidateAndCancel()
+            dispatch_async(dispatch_get_main_queue()) {self.delegate.fileTest(self, didFinishWithBandwidth: bandwidth)}
+        }
+        else {
+            dispatch_async(dispatch_get_main_queue()) {self.delegate.fileTest(self, didMeasureBandwidth: bandwidth)}
+        }
+    }
+    
+    // Data Task Delegate
+    
+    func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveResponse response: NSURLResponse, completionHandler: (NSURLSessionResponseDisposition) -> Void) {
+        requestStartTime = NSDate()
+        completionHandler(NSURLSessionResponseDisposition.Allow)
+    }
+    
+    func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveData data: NSData) {
+        self.total += data.length
+        processData(session, data: total)
+    }
+    
+    func URLSession(session: NSURLSession, task: NSURLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
+        processData(session, data: Int(totalBytesSent))
     }
 }

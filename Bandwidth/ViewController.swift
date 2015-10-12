@@ -11,8 +11,6 @@ import UIKit
 class ViewController: UIViewController, FileTestDelegate {
     
     let network = Network()
-    var download: FileTest!
-    var upload: FileTest!
     @IBOutlet weak var downloadLabel: UILabel!
     @IBOutlet weak var uploadLabel: UILabel!
     
@@ -24,6 +22,8 @@ class ViewController: UIViewController, FileTestDelegate {
         downloadLabel.text = ""
         uploadLabel.textColor = UIColor.blackColor()
         uploadLabel.text = ""
+        let download = FileTest(upload: false)
+        download.delegate = self
         download.start()
     }
     
@@ -62,6 +62,8 @@ class ViewController: UIViewController, FileTestDelegate {
         else {
             self.downloadLabel.text = "\(round(bandwidth * 100) / 100)Mbps"
             self.downloadLabel.textColor = UIColor.redColor()
+            let upload = FileTest(upload: true)
+            upload.delegate = self
             upload.start()
         }
     }
@@ -73,10 +75,6 @@ class ViewController: UIViewController, FileTestDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        download = FileTest(upload: false)
-        download.delegate = self
-        upload = FileTest(upload: true)
-        upload.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
