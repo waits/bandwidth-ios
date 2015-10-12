@@ -16,10 +16,11 @@ protocol FileTestDelegate {
 
 class FileTest : NSObject, NSURLSessionDataDelegate {
     
-    private var requestStartTime: NSDate?
     var total: Int = 0
     var upload: Bool
     var delegate: FileTestDelegate!
+    private var requestStartTime: NSDate?
+    private var testDuration = 8.0
     
     init(upload: Bool) {
         self.upload = upload
@@ -67,15 +68,15 @@ class FileTest : NSObject, NSURLSessionDataDelegate {
     }
     
     private func processData(session: NSURLSession, data: Int) {
-        let duration = requestStartTime!.timeIntervalSinceNow * -1
-        let bandwidth = Double(data) * 8.0 / 1_048_576.0 / duration
+        let elapsedTime = requestStartTime!.timeIntervalSinceNow * -1
+        let bandwidth = Double(data) * 8.0 / 1_048_576.0 / elapsedTime
         
-        if duration > 5.0 {
+        if elapsedTime > testDuration {
             session.invalidateAndCancel()
             dispatch_async(dispatch_get_main_queue()) {self.delegate.fileTest(self, didFinishWithBandwidth: bandwidth)}
         }
         else {
-            dispatch_async(dispatch_get_main_queue()) {self.delegate.fileTest(self, didMeasureBandwidth: bandwidth, withProgress: Float(duration / 5.0))}
+            dispatch_async(dispatch_get_main_queue()) {self.delegate.fileTest(self, didMeasureBandwidth: bandwidth, withProgress: Float(elapsedTime / self.testDuration))}
         }
     }
     
