@@ -25,7 +25,7 @@ class FileTest : NSObject, NSURLSessionDataDelegate {
     }
     
     func start() {
-        dispatchRequest(128 * 1024 * 1024)
+        dispatchRequest((upload ? 64 : 128) * 1024 * 1024)
     }
     
     private func dispatchRequest(size: Int) {
