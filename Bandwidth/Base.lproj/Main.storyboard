@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
@@ -18,6 +18,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mf-XC-gxm">
                                 <rect key="frame" x="234" y="273" width="133" height="53"/>
+                                <animations/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="34"/>
                                 <state key="normal" title="Start Test">
                                     <color key="titleColor" red="0.38431372549999998" green="0.71372549019999998" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -30,25 +31,53 @@
                                     <action selector="startWasPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e6U-Li-OWR"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UUe-BU-X6f">
-                                <rect key="frame" x="298" y="386" width="4.5" height="20.5"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 0.0Mbps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UUe-BU-X6f">
+                                <rect key="frame" x="264" y="386" width="71.5" height="20.5"/>
+                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ku8-PO-EQc">
-                                <rect key="frame" x="298" y="466.5" width="4.5" height="20.5"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 0.0Mbps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ku8-PO-EQc">
+                                <rect key="frame" x="264.5" y="466" width="71.5" height="20.5"/>
+                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Syu-6i-owY">
+                                <rect key="frame" x="225" y="414" width="150" height="2"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="XTt-Bq-u3Y"/>
+                                </constraints>
+                            </progressView>
+                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TkR-Na-ty2">
+                                <rect key="frame" x="225" y="494" width="150" height="2"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="lZw-R6-eKR"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="vs0-zy-wEI"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="vs0-zy-wEI"/>
+                                    </mask>
+                                </variation>
+                            </progressView>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="UUe-BU-X6f" firstAttribute="top" secondItem="2mf-XC-gxm" secondAttribute="bottom" constant="60" id="4YX-Jn-bww"/>
                             <constraint firstAttribute="centerY" secondItem="2mf-XC-gxm" secondAttribute="centerY" constant="30.5" id="8Si-dS-bq7"/>
+                            <constraint firstItem="Syu-6i-owY" firstAttribute="top" secondItem="UUe-BU-X6f" secondAttribute="bottom" constant="7.5" id="EV9-zx-Htq"/>
                             <constraint firstItem="UUe-BU-X6f" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FBS-pW-Zwc"/>
+                            <constraint firstItem="TkR-Na-ty2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="IYx-XQ-Gqy"/>
+                            <constraint firstItem="Syu-6i-owY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="O3f-kb-nOx"/>
                             <constraint firstItem="Ku8-PO-EQc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="T9K-gb-cQT"/>
+                            <constraint firstItem="TkR-Na-ty2" firstAttribute="top" secondItem="Ku8-PO-EQc" secondAttribute="bottom" constant="7.5" id="Xu3-So-yru"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="UUe-BU-X6f" secondAttribute="bottom" constant="193.5" id="YU9-1M-AvQ"/>
                             <constraint firstAttribute="centerX" secondItem="2mf-XC-gxm" secondAttribute="centerX" id="bZY-eU-m7h"/>
                             <constraint firstAttribute="centerY" secondItem="2mf-XC-gxm" secondAttribute="centerY" constant="0.5" id="elR-NV-OWO"/>
                             <constraint firstItem="Ku8-PO-EQc" firstAttribute="top" secondItem="UUe-BU-X6f" secondAttribute="bottom" constant="60" id="ies-xX-Voc"/>
@@ -61,12 +90,15 @@
                     </view>
                     <connections>
                         <outlet property="downloadLabel" destination="UUe-BU-X6f" id="DMf-wY-MbZ"/>
+                        <outlet property="downloadProgress" destination="Syu-6i-owY" id="Phf-By-KBE"/>
                         <outlet property="startButton" destination="2mf-XC-gxm" id="u7u-es-son"/>
                         <outlet property="uploadLabel" destination="Ku8-PO-EQc" id="D5i-xV-8yp"/>
+                        <outlet property="uploadProgress" destination="TkR-Na-ty2" id="fTm-pV-s9x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="570" y="347"/>
         </scene>
     </scenes>
 </document>

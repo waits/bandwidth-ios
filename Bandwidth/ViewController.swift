@@ -13,15 +13,23 @@ class ViewController: UIViewController, FileTestDelegate {
     let network = Network()
     @IBOutlet weak var downloadLabel: UILabel!
     @IBOutlet weak var uploadLabel: UILabel!
+    @IBOutlet weak var downloadProgress: UIProgressView!
+    @IBOutlet weak var uploadProgress: UIProgressView!
     
     @IBOutlet weak var startButton: UIButton!
     
     @IBAction func startWasPressed(sender: UIButton) {
         startButton.enabled = false
+        
+        uploadLabel.hidden = true
+        uploadProgress.hidden = true
+        
         downloadLabel.textColor = UIColor.blackColor()
         downloadLabel.text = ""
-        uploadLabel.textColor = UIColor.blackColor()
-        uploadLabel.text = ""
+        downloadLabel.hidden = false
+        downloadProgress.hidden = false
+        downloadProgress.progress = 0
+        
         let download = FileTest(upload: false)
         download.delegate = self
         download.start()
@@ -42,13 +50,15 @@ class ViewController: UIViewController, FileTestDelegate {
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    // File Test Delegate
+    // MARK: - File Test Delegate
     
-    func fileTest(fileTest: FileTest, didMeasureBandwidth bandwidth: Double) {
+    func fileTest(fileTest: FileTest, didMeasureBandwidth bandwidth: Double, withProgress progress: Float) {
         if fileTest.upload {
+            self.uploadProgress.progress = progress
             self.uploadLabel.text = "\(round(bandwidth * 100) / 100)Mbps"
         }
         else {
+            self.downloadProgress.progress = progress
             self.downloadLabel.text = "\(round(bandwidth * 100) / 100)Mbps"
         }
     }
@@ -62,6 +72,13 @@ class ViewController: UIViewController, FileTestDelegate {
         else {
             self.downloadLabel.text = "\(round(bandwidth * 100) / 100)Mbps"
             self.downloadLabel.textColor = UIColor.redColor()
+            
+            uploadLabel.textColor = UIColor.blackColor()
+            uploadLabel.text = ""
+            uploadLabel.hidden = false
+            uploadProgress.progress = 0
+            uploadProgress.hidden = false
+            
             let upload = FileTest(upload: true)
             upload.delegate = self
             upload.start()
@@ -72,6 +89,8 @@ class ViewController: UIViewController, FileTestDelegate {
         startButton.enabled = true
         showError()
     }
+    
+    // MARK: - View
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,6 +100,5 @@ class ViewController: UIViewController, FileTestDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 
 }

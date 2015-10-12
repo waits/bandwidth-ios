@@ -9,12 +9,13 @@
 import Foundation
 
 protocol FileTestDelegate {
-    func fileTest(fileTest: FileTest, didMeasureBandwidth: Double)
+    func fileTest(fileTest: FileTest, didMeasureBandwidth: Double, withProgress: Float)
     func fileTest(fileTest: FileTest, didFinishWithBandwidth: Double)
     func fileTestDidFail()
 }
 
 class FileTest : NSObject, NSURLSessionDataDelegate {
+    
     private var requestStartTime: NSDate?
     var total: Int = 0
     var upload: Bool
@@ -25,7 +26,7 @@ class FileTest : NSObject, NSURLSessionDataDelegate {
     }
     
     func start() {
-        dispatchRequest((upload ? 64 : 128) * 1024 * 1024)
+        dispatchRequest((upload ? 16 : 128) * 1024 * 1024)
     }
     
     private func dispatchRequest(size: Int) {
@@ -74,11 +75,11 @@ class FileTest : NSObject, NSURLSessionDataDelegate {
             dispatch_async(dispatch_get_main_queue()) {self.delegate.fileTest(self, didFinishWithBandwidth: bandwidth)}
         }
         else {
-            dispatch_async(dispatch_get_main_queue()) {self.delegate.fileTest(self, didMeasureBandwidth: bandwidth)}
+            dispatch_async(dispatch_get_main_queue()) {self.delegate.fileTest(self, didMeasureBandwidth: bandwidth, withProgress: Float(duration / 5.0))}
         }
     }
     
-    // Data Task Delegate
+    // MARK: - Data Task Delegate
     
     func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveResponse response: NSURLResponse, completionHandler: (NSURLSessionResponseDisposition) -> Void) {
         requestStartTime = NSDate()
@@ -93,4 +94,5 @@ class FileTest : NSObject, NSURLSessionDataDelegate {
     func URLSession(session: NSURLSession, task: NSURLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
         processData(session, data: Int(totalBytesSent))
     }
+    
 }

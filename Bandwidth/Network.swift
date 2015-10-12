@@ -9,6 +9,7 @@
 import Foundation
 
 class Network : NSObject, GBPingDelegate {
+    
     private var pinger: GBPing?
     private var pingsCompleted: Int = 0
     private var pingTime: Double = 0.0
@@ -39,7 +40,7 @@ class Network : NSObject, GBPingDelegate {
     }
     
     static func randomData(size: Int) -> NSData {
-        return NSMutableData(length: size * 1024)!.copy() as! NSData
+        return NSMutableData(length: size)!.copy() as! NSData
     }
     
     // MARK: - GBPing Delegate
@@ -83,4 +84,5 @@ class Network : NSObject, GBPingDelegate {
     func ping(pinger: GBPing!, didTimeoutWithSummary summary: GBPingSummary!) {
         print("Timeout: \(summary)")
     }
+    
 }
