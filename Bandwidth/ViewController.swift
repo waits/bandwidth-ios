@@ -24,7 +24,6 @@ class ViewController: UIViewController, FileTestDelegate {
         uploadLabel.hidden = true
         uploadProgress.hidden = true
         
-        downloadLabel.textColor = UIColor.blackColor()
         downloadLabel.text = ""
         downloadLabel.hidden = false
         downloadProgress.hidden = false
@@ -66,14 +65,11 @@ class ViewController: UIViewController, FileTestDelegate {
     func fileTest(fileTest: FileTest, didFinishWithBandwidth bandwidth: Double) {
         if fileTest.upload {
             self.uploadLabel.text = "\(round(bandwidth * 100) / 100)Mbps"
-            self.uploadLabel.textColor = UIColor.redColor()
             self.startButton.enabled = true
         }
         else {
             self.downloadLabel.text = "\(round(bandwidth * 100) / 100)Mbps"
-            self.downloadLabel.textColor = UIColor.redColor()
             
-            uploadLabel.textColor = UIColor.blackColor()
             uploadLabel.text = ""
             uploadLabel.hidden = false
             uploadProgress.progress = 0

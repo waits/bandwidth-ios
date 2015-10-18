@@ -39,7 +39,7 @@ class FileTest : NSObject, NSURLSessionDataDelegate {
         let task: NSURLSessionDataTask
         
         if self.upload {
-            let url = NSURL(string: "https://bandwidth.waits.io/upload")!
+            let url = NSURL(string: "http://bandwidth.waits.io/upload")!
             let request = NSMutableURLRequest(URL: url)
             request.HTTPMethod = "POST"
             request.HTTPBody = Network.randomData(size)
@@ -49,7 +49,7 @@ class FileTest : NSObject, NSURLSessionDataDelegate {
             task.resume()
         }
         else {
-            let url = NSURL(string: "https://cdn.bandwidth.waits.io/\(file)")!
+            let url = NSURL(string: "http://cdn.bandwidth.waits.io/\(file)")!
             task = session.dataTaskWithURL(url)
             task.resume()
         }
@@ -71,7 +71,7 @@ class FileTest : NSObject, NSURLSessionDataDelegate {
         let elapsedTime = requestStartTime!.timeIntervalSinceNow * -1
         let bandwidth = Double(data) * 8.0 / 1_048_576.0 / elapsedTime
         
-        if elapsedTime > testDuration {
+        if elapsedTime >= testDuration {
             session.invalidateAndCancel()
             dispatch_async(dispatch_get_main_queue()) {self.delegate.fileTest(self, didFinishWithBandwidth: bandwidth)}
         }
