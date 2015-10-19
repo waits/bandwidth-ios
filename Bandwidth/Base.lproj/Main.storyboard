@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mf-XC-gxm">
-                                <rect key="frame" x="234" y="273" width="133" height="53"/>
+                                <rect key="frame" x="234" y="51" width="133" height="53"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="34"/>
                                 <state key="normal" title="Start Test">
@@ -32,52 +32,39 @@
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 0.0Mbps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UUe-BU-X6f">
-                                <rect key="frame" x="264" y="386" width="71.5" height="20.5"/>
+                                <rect key="frame" x="265" y="428" width="71.5" height="20.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ggT-di-05t" customClass="CircleView" customModule="Bandwidth" customModuleProvider="target">
+                                <rect key="frame" x="180" y="180" width="240" height="240"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="33D-Ej-H2D"/>
+                                    <constraint firstAttribute="width" constant="240" id="Vhs-DV-g2R"/>
+                                </constraints>
+                            </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 0.0Mbps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ku8-PO-EQc">
-                                <rect key="frame" x="264.5" y="466" width="71.5" height="20.5"/>
+                                <rect key="frame" x="265" y="508.5" width="71.5" height="20.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Syu-6i-owY">
-                                <rect key="frame" x="225" y="414" width="150" height="2"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="XTt-Bq-u3Y"/>
-                                </constraints>
-                            </progressView>
-                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TkR-Na-ty2">
-                                <rect key="frame" x="225" y="494" width="150" height="2"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="lZw-R6-eKR"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="vs0-zy-wEI"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="vs0-zy-wEI"/>
-                                    </mask>
-                                </variation>
-                            </progressView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="UUe-BU-X6f" firstAttribute="top" secondItem="2mf-XC-gxm" secondAttribute="bottom" constant="60" id="4YX-Jn-bww"/>
                             <constraint firstAttribute="centerY" secondItem="2mf-XC-gxm" secondAttribute="centerY" constant="30.5" id="8Si-dS-bq7"/>
-                            <constraint firstItem="Syu-6i-owY" firstAttribute="top" secondItem="UUe-BU-X6f" secondAttribute="bottom" constant="7.5" id="EV9-zx-Htq"/>
+                            <constraint firstItem="ggT-di-05t" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="AhL-TX-odW"/>
                             <constraint firstItem="UUe-BU-X6f" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FBS-pW-Zwc"/>
-                            <constraint firstItem="TkR-Na-ty2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="IYx-XQ-Gqy"/>
-                            <constraint firstItem="Syu-6i-owY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="O3f-kb-nOx"/>
+                            <constraint firstItem="ggT-di-05t" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="K5p-XR-1GP"/>
+                            <constraint firstItem="ggT-di-05t" firstAttribute="top" secondItem="2mf-XC-gxm" secondAttribute="bottom" constant="76" id="Rg0-v3-Otn"/>
                             <constraint firstItem="Ku8-PO-EQc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="T9K-gb-cQT"/>
-                            <constraint firstItem="TkR-Na-ty2" firstAttribute="top" secondItem="Ku8-PO-EQc" secondAttribute="bottom" constant="7.5" id="Xu3-So-yru"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="UUe-BU-X6f" secondAttribute="bottom" constant="193.5" id="YU9-1M-AvQ"/>
+                            <constraint firstItem="UUe-BU-X6f" firstAttribute="top" secondItem="ggT-di-05t" secondAttribute="bottom" constant="8" id="aaY-MI-cC6"/>
                             <constraint firstAttribute="centerX" secondItem="2mf-XC-gxm" secondAttribute="centerX" id="bZY-eU-m7h"/>
                             <constraint firstAttribute="centerY" secondItem="2mf-XC-gxm" secondAttribute="centerY" constant="0.5" id="elR-NV-OWO"/>
                             <constraint firstItem="Ku8-PO-EQc" firstAttribute="top" secondItem="UUe-BU-X6f" secondAttribute="bottom" constant="60" id="ies-xX-Voc"/>
@@ -85,15 +72,15 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="8Si-dS-bq7"/>
+                                <exclude reference="elR-NV-OWO"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="circleView" destination="ggT-di-05t" id="9aW-eU-9aj"/>
                         <outlet property="downloadLabel" destination="UUe-BU-X6f" id="DMf-wY-MbZ"/>
-                        <outlet property="downloadProgress" destination="Syu-6i-owY" id="Phf-By-KBE"/>
                         <outlet property="startButton" destination="2mf-XC-gxm" id="u7u-es-son"/>
                         <outlet property="uploadLabel" destination="Ku8-PO-EQc" id="D5i-xV-8yp"/>
-                        <outlet property="uploadProgress" destination="TkR-Na-ty2" id="fTm-pV-s9x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

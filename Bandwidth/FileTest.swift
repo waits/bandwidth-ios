@@ -9,7 +9,7 @@
 import Foundation
 
 protocol FileTestDelegate {
-    func fileTest(fileTest: FileTest, didMeasureBandwidth: Double, withProgress: Float)
+    func fileTest(fileTest: FileTest, didMeasureBandwidth: Double, withProgress: Double)
     func fileTest(fileTest: FileTest, didFinishWithBandwidth: Double)
     func fileTestDidFail()
 }
@@ -76,7 +76,7 @@ class FileTest : NSObject, NSURLSessionDataDelegate {
             dispatch_async(dispatch_get_main_queue()) {self.delegate.fileTest(self, didFinishWithBandwidth: bandwidth)}
         }
         else {
-            dispatch_async(dispatch_get_main_queue()) {self.delegate.fileTest(self, didMeasureBandwidth: bandwidth, withProgress: Float(elapsedTime / self.testDuration))}
+            dispatch_async(dispatch_get_main_queue()) {self.delegate.fileTest(self, didMeasureBandwidth: bandwidth, withProgress: Double(elapsedTime / self.testDuration))}
         }
     }
     

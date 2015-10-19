@@ -13,8 +13,9 @@ class ViewController: UIViewController, FileTestDelegate {
     let network = Network()
     @IBOutlet weak var downloadLabel: UILabel!
     @IBOutlet weak var uploadLabel: UILabel!
-    @IBOutlet weak var downloadProgress: UIProgressView!
-    @IBOutlet weak var uploadProgress: UIProgressView!
+//    @IBOutlet weak var downloadProgress: UIProgressView!
+//    @IBOutlet weak var uploadProgress: UIProgressView!
+    @IBOutlet weak var circleView: CircleView!
     
     @IBOutlet weak var startButton: UIButton!
     
@@ -22,12 +23,12 @@ class ViewController: UIViewController, FileTestDelegate {
         startButton.enabled = false
         
         uploadLabel.hidden = true
-        uploadProgress.hidden = true
+//        uploadProgress.hidden = true
         
         downloadLabel.text = ""
         downloadLabel.hidden = false
-        downloadProgress.hidden = false
-        downloadProgress.progress = 0
+//        downloadProgress.hidden = false
+//        downloadProgress.progress = 0
         
         let download = FileTest(upload: false)
         download.delegate = self
@@ -51,14 +52,14 @@ class ViewController: UIViewController, FileTestDelegate {
     
     // MARK: - File Test Delegate
     
-    func fileTest(fileTest: FileTest, didMeasureBandwidth bandwidth: Double, withProgress progress: Float) {
+    func fileTest(fileTest: FileTest, didMeasureBandwidth bandwidth: Double, withProgress progress: Double) {
+        circleView.progress = progress
+        circleView.setNeedsDisplay()
         if fileTest.upload {
-            self.uploadProgress.progress = progress
-            self.uploadLabel.text = "\(round(bandwidth * 100) / 100)Mbps"
+            uploadLabel.text = "\(round(bandwidth * 100) / 100)Mbps"
         }
         else {
-            self.downloadProgress.progress = progress
-            self.downloadLabel.text = "\(round(bandwidth * 100) / 100)Mbps"
+            downloadLabel.text = "\(round(bandwidth * 100) / 100)Mbps"
         }
     }
     
@@ -72,8 +73,6 @@ class ViewController: UIViewController, FileTestDelegate {
             
             uploadLabel.text = ""
             uploadLabel.hidden = false
-            uploadProgress.progress = 0
-            uploadProgress.hidden = false
             
             let upload = FileTest(upload: true)
             upload.delegate = self
