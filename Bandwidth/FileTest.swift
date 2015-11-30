@@ -27,49 +27,35 @@ class FileTest : NSObject, NSURLSessionDataDelegate {
     }
     
     func start() {
-        dispatchRequest((upload ? 16 : 128) * 1024 * 1024)
+        dispatchRequest()
     }
     
-    private func dispatchRequest(size: Int) {
-        let file = convertSize(size)
-        
+    private func dispatchRequest() {
         let sessionConfig = NSURLSessionConfiguration.ephemeralSessionConfiguration()
         sessionConfig.URLCache = NSURLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
         let session = NSURLSession(configuration: sessionConfig, delegate: self, delegateQueue: nil)
         let task: NSURLSessionDataTask
         
         if self.upload {
-            let url = NSURL(string: "http://bandwidth.waits.io/upload")!
+            let url = NSURL(string: "http://test.ntwrk.waits.io/upload")!
             let request = NSMutableURLRequest(URL: url)
             request.HTTPMethod = "POST"
-            request.HTTPBody = Network.randomData(size)
+            request.HTTPBody = Network.randomData(16000000)
             task = session.dataTaskWithRequest(request)
             
             requestStartTime = NSDate()
             task.resume()
         }
         else {
-            let url = NSURL(string: "http://cdn.bandwidth.waits.io/\(file)")!
+            let url = NSURL(string: "http://test.ntwrk.waits.io/download")!
             task = session.dataTaskWithURL(url)
             task.resume()
         }
     }
     
-    private func convertSize(size: Int) -> String {
-        if size >= 1_048_576 {
-            return size % 1_048_576 == 0 ? "\(size / 1_048_576)m" : "\(Double(size) / 1_048_576.0)m"
-        }
-        if size > 1024 {
-            return size % 1024 == 0 ? "\(size / 1024)k" : "\(Double(size) / 1024.0)k"
-        }
-        else {
-            return "\(size)b"
-        }
-    }
-    
     private func processData(session: NSURLSession, data: Int) {
         let elapsedTime = requestStartTime!.timeIntervalSinceNow * -1
-        let bandwidth = Double(data) * 8.0 / 1_048_576.0 / elapsedTime
+        let bandwidth = Double(data) * 8.0 / 1000000.0 / elapsedTime
         
         if elapsedTime >= testDuration {
             session.invalidateAndCancel()

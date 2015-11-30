@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FC2C37D11B8166D7005E499D /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2C37D01B8166D7005E499D /* Network.swift */; };
-		FC38BEAE1BD4510F00F141A8 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC38BEAD1BD4510F00F141A8 /* CircleView.swift */; settings = {ASSET_TAGS = (); }; };
+		FC38BEAE1BD4510F00F141A8 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC38BEAD1BD4510F00F141A8 /* CircleView.swift */; };
 		FC62EE141B8AAC59001DD60E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FC62EE131B8AAC59001DD60E /* Settings.bundle */; };
 		FC8C83841B85426E008E2996 /* bump_build_number.sh in Resources */ = {isa = PBXBuildFile; fileRef = FC8C83831B85426E008E2996 /* bump_build_number.sh */; };
 		FCBD539B1B8162B2005667DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBD539A1B8162B2005667DF /* AppDelegate.swift */; };
@@ -17,7 +17,7 @@
 		FCBD53A21B8162B2005667DF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCBD53A11B8162B2005667DF /* Images.xcassets */; };
 		FCBD53A51B8162B2005667DF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCBD53A31B8162B2005667DF /* LaunchScreen.xib */; };
 		FCBD53B11B8162B2005667DF /* BandwidthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBD53B01B8162B2005667DF /* BandwidthTests.swift */; };
-		FCCCBC881BB77A90002F28D2 /* FileTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCCBC871BB77A90002F28D2 /* FileTest.swift */; settings = {ASSET_TAGS = (); }; };
+		FCCCBC881BB77A90002F28D2 /* FileTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCCBC871BB77A90002F28D2 /* FileTest.swift */; };
 		FCEA61BF1B83BBD500553DF4 /* GBPing.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEA61BB1B83BBD500553DF4 /* GBPing.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FCEA61C01B83BBD500553DF4 /* GBPingSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEA61BD1B83BBD500553DF4 /* GBPingSummary.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
